@@ -1,10 +1,7 @@
 <?php
-session_start();
 require_once 'db.php';
 require_once 'hospAvaliacao.php';
 // Conexão com o banco de dados
-
-header('Content-Type: application/json; charset=utf-8'); // Define o cabeçalho correto
 
 $password = 'senha';
 
@@ -29,14 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_dispositivo = isset($_POST['id_dispositivo']) ? intval($_POST['id_dispositivo']) : null;
     $nr_nota_resposta = isset($_POST['nr_nota_resposta']) ? intval($_POST['nr_nota_resposta']) : null;
     $ds_feedback = isset($_POST['ds_feedback']) ? $_POST['ds_feedback'] : null;
-    $notaNula = $_POST['nota_nula'];
-
-    if ($notaNula == 'S' ) {
-        $nr_nota_resposta = null;
-    }
-
-    // Atribui o setor na sessão
-    $_SESSION['idDispositivo'] = $id_dispositivo;
 
     // Validar se todos os campos obrigatórios foram preenchidos
     if ($id_setor && $id_pergunta && $id_dispositivo ) {
